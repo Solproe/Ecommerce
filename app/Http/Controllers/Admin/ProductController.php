@@ -15,7 +15,8 @@ class ProductController extends Controller
         $request->validate([
             'file' => 'required|image|max:2048'
         ]);
-        
+
+
         $url = Storage::put('products', $request->file('file'));
 
         $product->images()->create([

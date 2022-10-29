@@ -1,9 +1,9 @@
 <div>
 
     <header class="bg-white shadow">
-        <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center">
-                <h1 class="font-semibold text-xl text-gray-800 leading-tight">
+        <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between">
+                <h1 class="text-xl font-semibold leading-tight text-gray-800">
                     Productos
                 </h1>
 
@@ -14,9 +14,9 @@
         </div>
     </header>
 
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12 text-gray-700">
+    <div class="max-w-4xl px-4 py-12 mx-auto text-gray-700 sm:px-6 lg:px-8">
 
-        <h1 class="text-3xl text-center font-semibold mb-8">Complete esta información para crear un producto</h1>
+        <h1 class="mb-8 text-3xl font-semibold text-center">Complete esta información para crear un producto</h1>
 
         <div class="mb-4" wire:ignore>
             <form action="{{ route('admin.products.files', $product) }}" method="POST" class="dropzone"
@@ -25,14 +25,14 @@
 
         @if ($product->images->count())
 
-            <section class="bg-white shadow-xl rounded-lg p-6 mb-4">
-                <h1 class="text-2xl text-center font-semibold mb-2">Imagenes del producto</h1>
+            <section class="p-6 mb-4 bg-white rounded-lg shadow-xl">
+                <h1 class="mb-2 text-2xl font-semibold text-center">Imagenes del producto</h1>
 
                 <ul class="flex flex-wrap">
                     @foreach ($product->images as $image)
 
                         <li class="relative" wire:key="image-{{ $image->id }}">
-                            <img class="w-32 h-20 object-cover" src="{{ Storage::url($image->url) }}" alt="">
+                            <img class="object-cover w-32 h-20" src="{{ Storage::url($image->url) }}" alt="">
                             <x-jet-danger-button class="absolute right-2 top-2"
                                 wire:click="deleteImage({{ $image->id }})" wire:loading.attr="disabled"
                                 wire:target="deleteImage({{ $image->id }})">
@@ -50,11 +50,11 @@
 
         @livewire('admin.status-product', ['product' => $product], key('status-product-' . $product->id))
 
-        {{-- <div class="bg-white shadow-xl rounded-lg p-6">
+        {{-- <div class="p-6 bg-white rounded-lg shadow-xl">
 
         </div> --}}
 
-        <div class="bg-white shadow-xl rounded-lg p-6">
+        <div class="p-6 bg-white rounded-lg shadow-xl">
             <div class="grid grid-cols-2 gap-6 mb-4">
 
                 {{-- Categoría --}}
@@ -125,7 +125,7 @@
                 {{-- Marca --}}
                 <div>
                     <x-jet-label value="Marca" />
-                    <select class="form-control w-full" wire:model="product.brand_id">
+                    <select class="w-full form-control" wire:model="product.brand_id">
                         <option value="" selected disabled>Seleccione una marca</option>
                         @foreach ($brands as $brand)
                             <option value="{{ $brand->id }}">{{ $brand->name }}</option>
@@ -159,7 +159,7 @@
 
             @endif
 
-            <div class="flex justify-end items-center mt-4">
+            <div class="flex items-center justify-end mt-4">
 
                 <x-jet-action-message class="mr-3" on="saved">
                     Actualizado
@@ -196,7 +196,7 @@
                 headers: {
                     'X-CSRF-TOKEN': "{{ csrf_token() }}"
                 },
-                dictDefaultMessage: "Arrastre una imagen al recuadro",
+                dictDefaultMessage: "Drag an image into the box",
                 acceptedFiles: 'image/*',
                 paramName: "file", // The name that will be used to transfer the file
                 maxFilesize: 2, // MB

@@ -17,94 +17,94 @@ class SubcategorySeeder extends Seeder
     public function run()
     {
         $subcategories = [
-            /* Celulares y tablets */
+            /* Muñecos de trapo */
             [
                 'category_id' => 1,
-                'name' => 'Celulares y smartphones',
-                'slug' => Str::slug('Celulares y smartphones'),
+                'name' => 'Navideños',
+                'slug' => Str::slug('Navideños'),
                 'color' => true
             ],
 
             [
                 'category_id' => 1,
-                'name' => 'Accesorios para celulares',
-                'slug' => Str::slug('Accesorios para celulares'),
+                'name' => 'Cuartos de Baños',
+                'slug' => Str::slug('Cuartos de Baños'),
             ],
 
             [
                 'category_id' => 1,
-                'name' => 'Smartwatches',
-                'slug' => Str::slug('Smartwatches'),
+                'name' => 'Dormitorios',
+                'slug' => Str::slug('Dormitorios'),
             ],
 
-            /* TV, audio y video */
+            /* Espejos */
 
             [
                 'category_id' => 2,
-                'name' => 'TV y audio',
-                'slug' => Str::slug('TV y audio'),
+                'name' => 'Decorativos',
+                'slug' => Str::slug('Decorativos'),
             ],
             [
                 'category_id' => 2,
-                'name' => 'Audios',
-                'slug' => Str::slug('Audios'),
+                'name' => 'Navideños',
+                'slug' => Str::slug('Navideños'),
             ],
 
             [
                 'category_id' => 2,
-                'name' => 'Audio para autos',
-                'slug' => Str::slug('Audio para autos'),
+                'name' => 'Dormitorio',
+                'slug' => Str::slug('Dormitorio'),
             ],
 
-            /* Consola y videojuegos */
+            /* Cojines */
             [
                 'category_id' => 3,
-                'name' => 'Xbox',
-                'slug' => Str::slug('xbos'),
-            ],
-
-            [
-                'category_id' => 3,
-                'name' => 'Play Station',
-                'slug' => Str::slug('Play Station'),
+                'name' => 'Navideños',
+                'slug' => Str::slug('Navideños'),
             ],
 
             [
                 'category_id' => 3,
-                'name' => 'Videojuegos para PC',
-                'slug' => Str::slug('Videojuegos para PC'),
+                'name' => 'Decorativos',
+                'slug' => Str::slug('Decotativos'),
             ],
 
             [
                 'category_id' => 3,
-                'name' => 'Nintendo',
-                'slug' => Str::slug('Nintendo'),
-            ],
-
-            /* Computación */
-
-            [
-                'category_id' => 4,
-                'name' => 'Portátiles',
-                'slug' => Str::slug('Portátiles'),
+                'name' => 'Salas',
+                'slug' => Str::slug('Salas'),
             ],
 
             [
-                'category_id' => 4,
-                'name' => 'PC escritorio',
-                'slug' => Str::slug('PC escritorio'),
+                'category_id' => 3,
+                'name' => 'Dormitorios',
+                'slug' => Str::slug('Dormitorios'),
             ],
+
+            /* Lenceria */
 
             [
                 'category_id' => 4,
-                'name' => 'Almacenamiento',
-                'slug' => Str::slug('Almacenamiento'),
+                'name' => 'Baños',
+                'slug' => Str::slug('Baños'),
             ],
 
             [
                 'category_id' => 4,
-                'name' => 'Accesorios computadoras',
-                'slug' => Str::slug('Accesorios computadoras'),
+                'name' => 'Sala',
+                'slug' => Str::slug('Sala'),
+            ],
+
+            [
+                'category_id' => 4,
+                'name' => 'Dormitorio',
+                'slug' => Str::slug('Dormitorio'),
+            ],
+
+            [
+                'category_id' => 4,
+                'name' => 'Cocina',
+                'slug' => Str::slug('Cocina'),
             ],
 
             /* Moda */
@@ -138,7 +138,7 @@ class SubcategorySeeder extends Seeder
         ];
 
         foreach ($subcategories as $subcategory) {
-            
+
 
             Subcategory::create($subcategory);
 
