@@ -1,13 +1,13 @@
 <x-app-layout>
 
-    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="max-w-5xl px-4 py-12 mx-auto sm:px-6 lg:px-8">
 
 
-        <div class="bg-white rounded-lg shadow-lg px-12 py-8 mb-6 flex items-center">
+        <div class="flex items-center px-12 py-8 mb-6 bg-white rounded-lg shadow-lg">
 
             <div class="relative">
                 <div class="{{ ($order->status >= 2 && $order->status != 5) ? 'bg-blue-400' : 'bg-gray-400' }}  rounded-full h-12 w-12 flex items-center justify-center">
-                    <i class="fas fa-check text-white"></i>
+                    <i class="text-white fas fa-check"></i>
                 </div>
 
                 <div class="absolute -left-1.5 mt-0.5">
@@ -19,7 +19,7 @@
 
             <div class="relative">
                 <div class="{{ ($order->status >= 3 && $order->status != 5) ? 'bg-blue-400' : 'bg-gray-400' }} rounded-full h-12 w-12 flex items-center justify-center">
-                    <i class="fas fa-truck text-white"></i>
+                    <i class="text-white fas fa-truck"></i>
                 </div>
 
                 <div class="absolute -left-1 mt-0.5">
@@ -31,7 +31,7 @@
 
             <div class="relative">
                 <div class="{{ ($order->status >= 4 && $order->status != 5) ? 'bg-blue-400' : 'bg-gray-400' }} rounded-full h-12 w-12 flex items-center justify-center">
-                    <i class="fas fa-check text-white"></i>
+                    <i class="text-white fas fa-check"></i>
                 </div>
 
                 <div class="absolute -left-2 mt-0.5">
@@ -44,12 +44,12 @@
 
 
 
-        <div class="bg-white rounded-lg shadow-lg px-6 py-4 mb-6 flex items-center">
+        <div class="flex items-center px-6 py-4 mb-6 bg-white rounded-lg shadow-lg">
             <p class="text-gray-700 uppercase"><span class="font-semibold">Número de orden:</span>
                 Orden-{{ $order->id }}</p>
 
             @if ($order->status == 1)
-            
+
                 <x-button-enlace class="ml-auto" href="{{route('orders.payment', $order)}}">
                     Ir a pagar
                 </x-button-enlace>
@@ -57,7 +57,7 @@
             @endif
         </div>
 
-        <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
+        <div class="p-6 mb-6 bg-white rounded-lg shadow-lg">
             <div class="grid grid-cols-2 gap-6 text-gray-700">
                 <div>
                     <p class="text-lg font-semibold uppercase">Envío</p>
@@ -84,10 +84,10 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-lg shadow-lg p-6 text-gray-700 mb-6">
-            <p class="text-xl font-semibold mb-4">Resumen</p>
+        <div class="p-6 mb-6 text-gray-700 bg-white rounded-lg shadow-lg">
+            <p class="mb-4 text-xl font-semibold">Resumen</p>
 
-            <table class="table-auto w-full">
+            <table class="w-full table-auto">
                 <thead>
                     <tr>
                         <th></th>
@@ -102,7 +102,7 @@
                         <tr>
                             <td>
                                 <div class="flex">
-                                    <img class="h-15 w-20 object-cover mr-4" src="{{ $item->options->image }}"
+                                    <img class="object-cover w-20 mr-4 h-15" src="{{ $item->options->image }}"
                                         alt="">
                                     <article>
                                         <h1 class="font-bold">{{ $item->name }}</h1>
@@ -121,7 +121,7 @@
                             </td>
 
                             <td class="text-center">
-                                {{ $item->price }} USD
+                                {{ $item->price }} COP
                             </td>
 
                             <td class="text-center">
@@ -129,7 +129,7 @@
                             </td>
 
                             <td class="text-center">
-                                {{ $item->price * $item->qty }} USD
+                                {{ $item->price * $item->qty }} COP
                             </td>
                         </tr>
                     @endforeach

@@ -1,47 +1,14 @@
-<div>
-    <?php
-
-    // MercadoPago SDK
-    require base_path('vendor/autoload.php');
-
-    // add credentials
-    MercadoPago\SDK::setAccessToken(config('services.mercadopago.token'));
-
-    // Create a preference object
-   /*  $payment_methods = MercadoPago::get('/v1/payment_methods'); */
-    // Crea un objeto de preferencia
-    $preference = new MercadoPago\Preference();
-
-   // Crea un objeto de preferencia
-       $preference = new MercadoPago\Preference();
-        $shipments = new MercadoPago\Shipments();
-        $shipments->cost = $order->shipping_cost;
-        $shipments->mode = "not_specified";
-        $preference->shipments = $shipments;
-
-    $preference->back_urls = [
-        'success' => route('orders.pay', $order),
-        'failure' => 'http://www.tu-sitio/failure',
-        'pending' => 'http://www.tu-sitio/pending',
-    ];
-
-  /*   $preference->auto_return = 'approved'; */
-    $preference->items = $products;
-    $preference->save();
-    ?>
-
-    <div class="container py-8 ">
+<x-app-layout>
+    <div class="container grid grid-cols-1 gap-6 py-8 lg:grid-cols-2 xl:grid-cols-5">
 
         <div class="order-2 lg:order-1 xl:col-span-3">
-            {{--  Number of order --}}
             <div class="px-6 py-4 mb-6 bg-white rounded-lg shadow-lg">
                 <p class="text-gray-700 uppercase"><span class="font-semibold">Número de orden:</span>
                     Orden-{{ $order->id }}</p>
             </div>
-            {{--  Shipping and contact information --}}
+
             <div class="p-6 mb-6 bg-white rounded-lg shadow-lg">
                 <div class="grid grid-cols-2 gap-6 text-gray-700">
-                    {{-- Ship info --}}
                     <div>
                         <p class="text-lg font-semibold uppercase">Envío</p>
 
@@ -57,7 +24,7 @@
 
 
                     </div>
-                    {{--   Data of the contact that receives the product --}}
+
                     <div>
                         <p class="text-lg font-semibold uppercase">Datos de contacto</p>
 
@@ -66,7 +33,7 @@
                     </div>
                 </div>
             </div>
-            {{-- Sale Summary --}}
+
             <div class="p-6 mb-6 text-gray-700 bg-white rounded-lg shadow-lg">
                 <p class="mb-4 text-xl font-semibold">Resumen</p>
 
@@ -125,12 +92,10 @@
         <div class="order-1 lg:order-2 xl:col-span-2">
             <div class="px-6 pt-6 bg-white rounded-lg shadow-lg">
                 <div class="flex items-center justify-between mb-4">
-                    <img class="h-16" src="{{ asset('img/MC_VI_DI_2-1.jpg') }}" alt="">
+                    <img class="h-8" src="{{ asset('img/MC_VI_DI_2-1.jpg') }}" alt="">
                     <div class="text-gray-700">
                         <p class="text-sm font-semibold">
-
                             Subtotal: {{ $order->total - $order->shipping_cost }} COP
-
                         </p>
                         <p class="text-sm font-semibold">
                             Envío: {{ $order->shipping_cost }} COP
@@ -138,38 +103,16 @@
                         <p class="text-lg font-semibold uppercase">
                             Total: {{ $order->total }} COP
                         </p>
-                        <div class="cho-container">
-
-                        </div>
                     </div>
-
+                    <div>
+                        <button wire:click="payOrder()" class="btn btn-success">
+                            Buy
+                        </button>
+                    </div>
                 </div>
 
             </div>
         </div>
 
     </div>
-
-    {{-- SDK MercadoPago.js V2 --}}
-
-    <script src="https://sdk.mercadopago.com/js/v2"></script>
-
-    {{--  <div class="cho-container"></div> --}}
-    <script>
-
-        const mp = new MercadoPago("{{ config('services.mercadopago.key') }}", {
-            locale: 'es-CO'
-        });
-
-        mp.checkout({
-            preference: {
-                id: '{{ $preference->id }}'
-            },
-            render: {
-                container: '.cho-container',
-                label: 'Pagar tu compras',
-            }
-        });
-    </script>
-
-</div>
+</x-app-layout>

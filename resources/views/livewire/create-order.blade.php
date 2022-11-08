@@ -152,7 +152,7 @@
 
                             </div>
 
-                            <p>USD {{$item->price}}</p>
+                            <p>COP {{$item->price}}</p>
                         </article>
                     </li>
                 @empty
@@ -169,15 +169,17 @@
             <div class="text-gray-700">
                 <p class="flex items-center justify-between">
                     Subtotal
-                    <span class="font-semibold">{{Cart::subtotal()}} USD</span>
+                    <span class="font-semibold">{{Cart::subtotal()}} COP</span>
                 </p>
+
                 <p class="flex items-center justify-between">
+
                     Envío
                     <span class="font-semibold">
                         @if ($envio_type == 1 || $shipping_cost == 0)
                             Gratis
                         @else
-                            {{$shipping_cost}} USD
+                            {{$shipping_cost}} COP
                         @endif
                     </span>
                 </p>
@@ -187,9 +189,10 @@
                 <p class="flex items-center justify-between font-semibold">
                     <span class="text-lg">Total</span>
                     @if ($envio_type == 1)
-                        {{Cart::subtotal()}} USD
+                        {{Cart::subtotal()}} COP
                     @else
-                        {{Cart::subtotal() + $shipping_cost}} USD
+
+                        {{Cart::subtotal() + $shipping_cost}} COP
                     @endif
                 </p>
             </div>

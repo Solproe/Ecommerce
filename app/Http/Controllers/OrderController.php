@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Http;
 class OrderController extends Controller
 {
 
+    /* public function payment(Order $order){
+        return view('orders.payment',compact('order'));
+    } */
+
     public function index(){
 
         $orders = Order::query()->where('user_id', auth()->user()->id);
@@ -48,7 +52,7 @@ class OrderController extends Controller
 
         $payment_id = $request->get('payment_id');
 
-        $response = Http::get("https://api.mercadopago.com/v1/payments/$payment_id" . "?access_token=APP_USR-2966754438242803-052115-15da96c087a2fc4d07794f08fe496606-763006654");
+        $response = Http::get("https://api.mercadopago.com/v1/payments/$payment_id" . "?access_token=APP_USR-7326211987032935-110512-410bfc1c97af6a3947730c1b5f888bc8-809152375");
 
         $response = json_decode($response);
 
