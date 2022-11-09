@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '21442c292cccaaa7320a86c32e53ed038dc1c22b',
+        'reference' => 'd1d7f3058884068b63baeff131c48df78704a8f6',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -274,6 +274,15 @@
             'aliases' => array(),
             'dev_requirement' => true,
         ),
+        'hardevine/shoppingcart' => array(
+            'pretty_version' => '3.1',
+            'version' => '3.1.0.0',
+            'reference' => 'fc734910e8d5c69e711a02784010ae687d0fd908',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../hardevine/shoppingcart',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'illuminate/auth' => array(
             'dev_requirement' => false,
             'replaced' => array(
@@ -523,7 +532,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '21442c292cccaaa7320a86c32e53ed038dc1c22b',
+            'reference' => 'd1d7f3058884068b63baeff131c48df78704a8f6',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

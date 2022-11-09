@@ -4,12 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class Order extends Model
 {
     use HasFactory;
-    
+
     protected $guarded = ['id', 'created_at', 'updated_at', 'status'];
+
+
 
     const PENDIENTE = 1;
     const RECIBIDO = 2;

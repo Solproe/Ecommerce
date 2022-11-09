@@ -499,6 +499,7 @@ class ComposerStaticInit3174cec8d00b52d784427f0ed7fcc3ef
         'Gloudemans\\Shoppingcart\\' => 
         array (
             0 => __DIR__ . '/..' . '/bumbummen99/shoppingcart/src',
+            1 => __DIR__ . '/..' . '/hardevine/shoppingcart/src',
         ),
         'Fruitcake\\Cors\\' => 
         array (

@@ -15,7 +15,7 @@ class CreateOrder extends Component
 
     public $envio_type = 1;
 
-    public $contact, $phone, $address, $order_costo, $references, $shipping_cost = 0;
+    public $contact, $phone, $address, $references, $shipping_cost = 0;
 
     public $departments, $cities = [], $districts = [];
 
@@ -79,21 +79,19 @@ class CreateOrder extends Component
         $order->contact = $this->contact;
         $order->phone = $this->phone;
         $order->envio_type = $this->envio_type;
+        $order->shipping_cost = 0;
+        $subtotal= str_replace(',', '', Cart::subtotal());
 
-
-        $total = intval($this->shipping_cost) + intval(Cart::subtotal());
-
-        dd(gettype(Cart::subtotal()));
-
+        $order->total = $this->shipping_cost + $subtotal;
         $order->content = Cart::content();
 
         if ($this->envio_type == 2) {
             $order->shipping_cost = $this->shipping_cost;
-            $order->department_id = $this->department_id;
+            /* $order->department_id = $this->department_id;
             $order->city_id = $this->city_id;
             $order->district_id = $this->district_id;
             $order->address = $this->address;
-            $order->references = $this->references;
+            $order->references = $this->references; */
             $order->envio = json_encode([
                 'department' => Department::find($this->department_id)->name,
                 'city' => City::find($this->city_id)->name,
@@ -119,4 +117,5 @@ class CreateOrder extends Component
         return view('livewire.create-order');
     }
 }
+
 

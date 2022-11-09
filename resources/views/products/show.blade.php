@@ -30,7 +30,7 @@
                     <a class="text-orange-500 underline hover:text-orange-600" href="">39 reseñas</a>
                 </div>
 
-                <p class="my-4 text-2xl font-semibold text-trueGray-700">USD {{ $product->price }}</p>
+                <p class="my-4 text-2xl font-semibold text-trueGray-700">COP{{ $product->price }}</p>
 
                 <div class="mb-6 bg-white rounded-lg shadow-lg">
                     <div class="flex items-center p-4">

@@ -125,7 +125,7 @@
 
             <hr>
 
-            <p class="mt-2 text-sm text-gray-700">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Totam atque quo, labore facere placeat illo consequatur hic ut sapiente exercitationem, architecto iure, consequuntur impedit ex iusto ipsa voluptas laudantium iste <a href="" class="font-semibold text-orange-500">Políticas y privacidad</a></p>
+            <p class="mt-2 text-sm text-gray-700">Resumen de ventas <a href="" class="font-semibold text-orange-500">Políticas y privacidad</a></p>
         </div>
 
     </div>
@@ -145,13 +145,10 @@
                                 @isset($item->options['color'])
                                     <p class="mx-2">- Color: {{__($item->options['color'])}}</p>
                                 @endisset
-
                                 @isset($item->options['size'])
                                     <p>{{$item->options['size']}}</p>
                                 @endisset
-
                             </div>
-
                             <p>COP {{$item->price}}</p>
                         </article>
                     </li>
@@ -177,6 +174,7 @@
                     Envío
                     <span class="font-semibold">
                         @if ($envio_type == 1 || $shipping_cost == 0)
+
                             Gratis
                         @else
                             {{$shipping_cost}} COP

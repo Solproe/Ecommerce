@@ -2,7 +2,7 @@
 
     <x-slot name="header">
         <div class="flex items-center">
-            <h2 class="font-semibold text-xl text-gray-600 leading-tight">
+            <h2 class="text-xl font-semibold leading-tight text-gray-600">
                 Lista de productos
             </h2>
 
@@ -20,32 +20,32 @@
 
             <div class="px-6 py-4">
 
-                <x-jet-input type="text" 
-                    wire:model="search" 
+                <x-jet-input type="text"
+                    wire:model="search"
                     class="w-full"
                     placeholder="Ingrese el nombre del procucto que quiere buscar" />
 
             </div>
 
             @if ($products->count())
-                
+
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                 Nombre
                             </th>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                 Categoría
                             </th>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                 Estado
                             </th>
                             <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                 Precio
                             </th>
                             <th scope="col" class="relative px-6 py-3">
@@ -60,12 +60,12 @@
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap">
                                     <div class="flex items-center">
-                                        <div class="flex-shrink-0 h-10 w-10">
+                                        <div class="flex-shrink-0 w-10 h-10">
                                             @if ($product->images->count())
-                                                <img class="h-10 w-10 rounded-full object-cover"
+                                                <img class="object-cover w-10 h-10 rounded-full"
                                                     src="{{ Storage::url($product->images->first()->url) }}" alt="">
                                             @else
-                                                <img class="h-10 w-10 rounded-full object-cover"
+                                                <img class="object-cover w-10 h-10 rounded-full"
                                                     src="https://images.pexels.com/photos/4883800/pexels-photo-4883800.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
                                             @endif
                                         </div>
@@ -87,13 +87,13 @@
                                     @switch($product->status)
                                         @case(1)
                                             <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800">
+                                                class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">
                                                 Borrador
                                             </span>
                                         @break
                                         @case(2)
                                             <span
-                                                class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                                class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
                                                 Publicado
                                             </span>
                                         @break
@@ -102,10 +102,10 @@
                                     @endswitch
 
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                    {{$product->price}} USD
+                                <td class="px-6 py-4 text-sm text-gray-500 whitespace-nowrap">
+                                    {{$product->price}} COP
                                 </td>
-                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                <td class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
                                     <a href="{{ route('admin.products.edit', $product) }}" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                 </td>
                             </tr>
@@ -122,13 +122,13 @@
             @endif
 
             @if ($products->hasPages())
-                
+
                 <div class="px-6 py-4">
                     {{ $products->links() }}
                 </div>
-                
+
             @endif
-                
+
 
         </x-table-responsive>
     </div>
