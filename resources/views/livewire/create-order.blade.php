@@ -5,19 +5,15 @@
         <div class="p-6 bg-white rounded-lg shadow">
             <div class="mb-4">
                 <x-jet-label value="Nombre de contácto" />
-                <x-jet-input type="text"
-                            wire:model.defer="contact"
-                            placeholder="Ingrese el nombre de la persona que recibirá el producto"
-                            class="w-full"/>
+                <x-jet-input type="text" wire:model.defer="contact"
+                    placeholder="Ingrese el nombre de la persona que recibirá el producto" class="w-full" />
                 <x-jet-input-error for="contact" />
             </div>
 
             <div>
                 <x-jet-label value="Teléfono de contacto" />
-                <x-jet-input type="text"
-                            wire:model.defer="phone"
-                            placeholder="Ingrese un número de telefono de contácto"
-                            class="w-full"/>
+                <x-jet-input type="text" wire:model.defer="phone"
+                    placeholder="Ingrese un número de telefono de contácto" class="w-full" />
 
                 <x-jet-input-error for="phone" />
             </div>
@@ -39,7 +35,7 @@
 
             <div class="bg-white rounded-lg shadow">
                 <label class="flex items-center px-6 py-4 cursor-pointer">
-                    <input x-model="envio_type"  type="radio" value="2" name="envio_type" class="text-gray-600">
+                    <input x-model="envio_type" type="radio" value="2" name="envio_type" class="text-gray-600">
                     <span class="ml-2 text-gray-700">
                         Envío a domicilio
                     </span>
@@ -57,7 +53,7 @@
                             <option value="" disabled selected>Seleccione un Departamento</option>
 
                             @foreach ($departments as $department)
-                                <option value="{{$department->id}}">{{$department->name}}</option>
+                                <option value="{{ $department->id }}">{{ $department->name }}</option>
                             @endforeach
                         </select>
 
@@ -73,28 +69,11 @@
                             <option value="" disabled selected>Seleccione una ciudad</option>
 
                             @foreach ($cities as $city)
-                                <option value="{{$city->id}}">{{$city->name}}</option>
+                                <option value="{{ $city->id }}">{{ $city->name }}</option>
                             @endforeach
                         </select>
 
                         <x-jet-input-error for="city_id" />
-                    </div>
-
-
-                    {{-- Distritos --}}
-                    <div>
-                        <x-jet-label value="Distrito" />
-
-                        <select class="w-full form-control" wire:model="district_id">
-
-                            <option value="" disabled selected>Seleccione un distrito</option>
-
-                            @foreach ($districts as $district)
-                                <option value="{{$district->id}}">{{$district->name}}</option>
-                            @endforeach
-                        </select>
-
-                        <x-jet-input-error for="district_id" />
                     </div>
 
                     <div>
@@ -115,17 +94,15 @@
         </div>
 
         <div>
-            <x-jet-button
-                wire:loading.attr="disabled"
-                wire:target="create_order"
-                class="mt-6 mb-4"
+            <x-jet-button wire:loading.attr="disabled" wire:target="create_order" class="mt-6 mb-4"
                 wire:click="create_order">
                 Continuar con la compra
             </x-jet-button>
 
             <hr>
 
-            <p class="mt-2 text-sm text-gray-700">Resumen de ventas <a href="" class="font-semibold text-orange-500">Políticas y privacidad</a></p>
+            <p class="mt-2 text-sm text-gray-700">Resumen de ventas <a href=""
+                    class="font-semibold text-orange-500">Políticas y privacidad</a></p>
         </div>
 
     </div>
@@ -135,21 +112,21 @@
             <ul>
                 @forelse (Cart::content() as $item)
                     <li class="flex p-2 border-b border-gray-200">
-                        <img class="object-cover w-20 mr-4 h-15" src="{{$item->options->image}}" alt="">
+                        <img class="object-cover w-20 mr-4 h-15" src="{{ $item->options->image }}" alt="">
 
                         <article class="flex-1">
-                            <h1 class="font-bold">{{$item->name}}</h1>
+                            <h1 class="font-bold">{{ $item->name }}</h1>
 
                             <div class="flex">
-                                <p>Cant: {{$item->qty}}</p>
+                                <p>Cant: {{ $item->qty }}</p>
                                 @isset($item->options['color'])
-                                    <p class="mx-2">- Color: {{__($item->options['color'])}}</p>
+                                    <p class="mx-2">- Color: {{ __($item->options['color']) }}</p>
                                 @endisset
                                 @isset($item->options['size'])
-                                    <p>{{$item->options['size']}}</p>
+                                    <p>{{ $item->options['size'] }}</p>
                                 @endisset
                             </div>
-                            <p>COP {{$item->price}}</p>
+                            <p>COP {{ $item->price }}</p>
                         </article>
                     </li>
                 @empty
@@ -166,7 +143,7 @@
             <div class="text-gray-700">
                 <p class="flex items-center justify-between">
                     Subtotal
-                    <span class="font-semibold">{{Cart::subtotal()}} COP</span>
+                    <span class="font-semibold">{{ Cart::subtotal() }} COP</span>
                 </p>
 
                 <p class="flex items-center justify-between">
@@ -174,25 +151,26 @@
                     Envío
                     <span class="font-semibold">
                         @if ($envio_type == 1 || $shipping_cost == 0)
-
                             Gratis
                         @else
-                            {{$shipping_cost}} COP
+                            {{ $shipping_cost }} COP
                         @endif
                     </span>
                 </p>
 
-                <hr class="mt-4 mb-3">
-
+                {{--  <hr class="mt-4 mb-3">
+ --}}
                 <p class="flex items-center justify-between font-semibold">
-                    <span class="text-lg">Total</span>
-                    @if ($envio_type == 1)
-                        {{Cart::subtotal()}} COP
-                    @else
-
-                        {{Cart::subtotal() + $shipping_cost}} COP
-                    @endif
+                    Total
+                    <span class="text-lg">
+                        @if ($envio_type == 1)
+                            {{ Cart::subtotal() }} COP
+                        @else
+                            {{ $subtotal = str_replace(',', '', Cart::subtotal()) + $shipping_cost }} COP
+                        @endif
+                    </span>
                 </p>
+
             </div>
         </div>
     </div>

@@ -3,11 +3,11 @@
 namespace App\Http\Livewire;
 
 use App\Models\City;
-use Livewire\Component;
-
-use App\Models\Department;
-use App\Models\District;
 use App\Models\Order;
+
+use Livewire\Component;
+use App\Models\District;
+use App\Models\Department;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CreateOrder extends Component
@@ -15,7 +15,7 @@ class CreateOrder extends Component
 
     public $envio_type = 1;
 
-    public $contact, $phone, $address, $references, $shipping_cost = 0;
+    public $contact, $phone, $address, $subtotal, $references, $shipping_cost = 0;
 
     public $departments, $cities = [], $districts = [];
 
@@ -34,7 +34,7 @@ class CreateOrder extends Component
     public function updatedEnvioType($value){
         if ($value == 1) {
             $this->resetValidation([
-                'department_id', 'city_id', 'district_id', 'address', 'references'
+                'department_id', 'city_id', 'address', 'references'
             ]);
         }
     }
@@ -43,7 +43,7 @@ class CreateOrder extends Component
     public function updatedDepartmentId($value){
         $this->cities = City::where('department_id', $value)->get();
 
-        $this->reset(['city_id', 'district_id']);
+        $this->reset(['city_id']);
     }
 
 
@@ -53,9 +53,9 @@ class CreateOrder extends Component
 
         $this->shipping_cost = $city->cost;
 
-        $this->districts = District::where('city_id', $value)->get();
+        /* this->districts = District::where('city_id', $value)->get(); */
 
-        $this->reset('district_id');
+        /* $this->reset('district_id'); */
     }
 
 
@@ -66,7 +66,7 @@ class CreateOrder extends Component
         if($this->envio_type == 2){
             $rules['department_id'] = 'required';
             $rules['city_id'] = 'required';
-            $rules['district_id'] = 'required';
+           /*  $rules['district_id'] = 'required'; */
             $rules['address'] = 'required';
             $rules['references'] = 'required';
         }
@@ -95,7 +95,7 @@ class CreateOrder extends Component
             $order->envio = json_encode([
                 'department' => Department::find($this->department_id)->name,
                 'city' => City::find($this->city_id)->name,
-                'district' => City::find($this->district_id)->name,
+                /* 'district' => City::find($this->district_id)->name, */
                 'address' => $this->address,
                 'references' => $this->references
             ]);
@@ -108,7 +108,6 @@ class CreateOrder extends Component
         }
 
         Cart::destroy();
-
         return redirect()->route('orders.payment', $order);
     }
 
