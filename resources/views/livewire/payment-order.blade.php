@@ -143,10 +143,7 @@
                         </div>
                     </div>
                 </div>
-
-
-                <div id="paypal-button-container"></div>
-
+                {{-- <div id="paypal-button-container"></div> --}}
             </div>
         </div>
 
@@ -170,9 +167,7 @@
         });
     </script>
 
-    @push('script')
-
-
+  {{--   @push('script')
 
         <script src="https://www.paypal.com/sdk/js?client-id={{ config('services.paypal.client_id') }}">
             // Replace YOUR_CLIENT_ID with your sandbox client ID
@@ -200,5 +195,5 @@
             }).render('#paypal-button-container'); // Display payment options on your web page
         </script>
 
-    @endpush
+    @endpush --}}
 </div>

@@ -24,8 +24,5 @@ class UserSeeder extends Seeder
             'email' => 'gerencia@solproe.com',
             'password' => bcrypt('12345678')
         ])->assignRole('admin');
-
-
-        User::factory(3)->create();
     }
 }
